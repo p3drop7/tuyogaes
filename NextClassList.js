@@ -25,7 +25,7 @@ export default function NextClassList() {
         setClassName('')
     }
 
-    const deleteHandler =()=>{
+    const deleteItem =()=>{
         
     }
     

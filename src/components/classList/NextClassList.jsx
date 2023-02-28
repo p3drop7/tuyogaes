@@ -42,20 +42,22 @@ const NextClassList = () => {
     
 	return (
 		<View style={styles.container}>
-			<Text style={styles.title}>Mis próximas clases:</Text>
 
 			<FlatList
 				contentContainerStyle={styles.listContainer}
 				data={classList}
+				keyExtractor={(item) => item.id}
 				renderItem={(itemData) => {
 					return (
 						<ClassItem
 							itemData={itemData}
 							onHandlerModal={onHandlerModal}
-						></ClassItem>
+						/>
 					);
 				}}
-				keyExtractor={(item) => item.id}
+				ListHeaderComponent={() => (
+					<Text style={styles.title}>Mis próximas clases</Text>
+				)}
 			/>
 
 			<DeleteModal
@@ -69,7 +71,7 @@ const NextClassList = () => {
 				onChangeTextHandler={onChangeTextHandler}
 				onPressInputHandler={onPressInputHandler}
 				className={className}
-			></ClassInput>
+			/>
 		</View>
 	);
 };
@@ -84,9 +86,10 @@ const styles = StyleSheet.create({
 	},
 
 	title: {
-		fontSize: 20,
+		marginTop: 20,
+		fontSize: 25,
+		textAlign: "center",
 		fontWeight: "bold",
-		margin: 10,
 	},
 
 	listContainer: {
@@ -97,5 +100,5 @@ const styles = StyleSheet.create({
 		borderColor: "black",
 		borderWidth: 1,
 		borderStyle: "solid",
-	}
+	},
 });

@@ -30,6 +30,7 @@ const ClassInput = ({
 
 export default ClassInput
 
+
 const styles = StyleSheet.create({
 	inputContainer: {
 		padding: 10,

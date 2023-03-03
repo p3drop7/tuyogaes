@@ -5,12 +5,11 @@ import {
 	View,
 } from "react-native";
 import React, { useState } from "react";
-
 import ClassInput from "./ClassInput";
 import ClassItem from "./ClassItem";
 import DeleteModal from "./DeleteModal";
 
-const NextClassList = () => {
+const ClassList = () => {
     
 	const [classList, setClassList] = useState([]);
 	const [className, setClassName] = useState("");
@@ -80,7 +79,7 @@ const NextClassList = () => {
 	);
 };
 
-export default NextClassList
+export default ClassList
 
 const styles = StyleSheet.create({
 	container: {

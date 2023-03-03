@@ -3,6 +3,7 @@ import { Modal, Pressable, StyleSheet, Text, View } from 'react-native'
 import COLORS from '../../constants/Colors'
 import React from 'react'
 
+
 const DeleteModal = ({deleteItem, itemSelected, modalVisible, onHandlerModal}) => {
   return (
 		<Modal animationType="slide" visible={modalVisible}>

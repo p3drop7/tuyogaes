@@ -4,7 +4,7 @@ import {
 	Text,
 	View,
 } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import ClassInput from "./ClassInput";
 import ClassItem from "./ClassItem";
@@ -41,24 +41,28 @@ const NextClassList = () => {
 	};
     
 	return (
-		<View style={styles.container}>
+		<View>
+			<Text style={styles.title}>Mis próximas clases</Text>
 
-			<FlatList
-				contentContainerStyle={styles.listContainer}
-				data={classList}
-				keyExtractor={(item) => item.id}
-				renderItem={(itemData) => {
-					return (
-						<ClassItem
-							itemData={itemData}
-							onHandlerModal={onHandlerModal}
-						/>
-					);
-				}}
-				ListHeaderComponent={() => (
-					<Text style={styles.title}>Mis próximas clases</Text>
+			<View style={styles.container}>
+				{classList.length === 0 ? (
+					<Text style={styles.emptyList}>No has agregado clases</Text>
+				) : (
+					<FlatList
+						contentContainerStyle={styles.listContainer}
+						data={classList}
+						keyExtractor={(item) => item.id}
+						renderItem={(itemData) => {
+							return (
+								<ClassItem
+									itemData={itemData}
+									onHandlerModal={onHandlerModal}
+								/>
+							);
+						}}
+					/>
 				)}
-			/>
+			</View>
 
 			<DeleteModal
 				deleteItem={deleteItem}
@@ -80,25 +84,23 @@ export default NextClassList
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1,
-		alignItems: "center",
-		justifyContent: "center",
+		alignItems: 'center'
+	},
+
+	emptyList: {
+		marginVertical: 100,
+		color: 'gray'
 	},
 
 	title: {
 		marginTop: 20,
 		fontSize: 25,
 		textAlign: "center",
-		fontWeight: "bold",
+		fontFamily: 'comfortaa-bold'
 	},
 
 	listContainer: {
-		flex: 1,
-		alignItems: "center",
-		justifyContent: "center",
 		width: 350,
-		borderColor: "black",
-		borderWidth: 1,
-		borderStyle: "solid",
+		alignItems: "center",
 	},
 });

@@ -1,11 +1,16 @@
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 
+import COLORS from "../../constants/Colors";
 import React from "react";
+import ShadowBox from "../CustomComponents/ShadowBox";
 
 const ClassItem = ({ itemData, onHandlerModal }) => {
 	return (
-		<View style={styles.itemContainer}>
-			<Image source={require("./anahata.png")} style={styles.itemImage} />
+		<ShadowBox style={styles.itemContainer}>
+			<Image
+				source={require("../../../assets/images/anahata.png")}
+				style={styles.itemImage}
+			/>
 			<View style={styles.itemDescription}>
 				<Text style={styles.itemText}>{itemData.item.title}</Text>
 				<Pressable
@@ -17,24 +22,20 @@ const ClassItem = ({ itemData, onHandlerModal }) => {
 					<Text style={styles.cancelButtonText}>Cancelar</Text>
 				</Pressable>
 			</View>
-		</View>
+		</ShadowBox>
 	);
 };
-
 export default ClassItem;
 
 const styles = StyleSheet.create({
 	itemContainer: {
-		width: 350,
+		width: "90%",
 		margin: 10,
-		paddingVertical: 10,
+		paddingVertical: 5,
 		flexDirection: "row",
 		justifyContent: "space-around",
 		alignItems: "center",
-		backgroundColor: "#E9FFDF",
-		borderColor: "#008245",
-		borderWidth: 2,
-		borderStyle: "solid",
+		backgroundColor: COLORS.lightGreen,
 	},
 
 	itemImage: {
@@ -48,7 +49,7 @@ const styles = StyleSheet.create({
 	},
 
 	itemText: {
-		fontWeight: "bold",
+		fontFamily: 'comfortaa',
 		fontSize: 20,
 	},
 
@@ -58,7 +59,7 @@ const styles = StyleSheet.create({
 		marginTop: 10,
 		justifyContent: "center",
 		alignItems: "center",
-		backgroundColor: "#F49E9E",
+		backgroundColor: COLORS.lightRed,
 		borderStyle: "solid",
 		borderRadius: 5,
 		overflow: "hidden",
@@ -66,6 +67,6 @@ const styles = StyleSheet.create({
 
 	cancelButtonText: {
 		color: "white",
-		fontWeight: "bold",
+		fontFamily: 'comfortaa-bold'
 	},
 });

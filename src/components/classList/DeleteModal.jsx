@@ -1,5 +1,6 @@
 import { Modal, Pressable, StyleSheet, Text, View } from 'react-native'
 
+import COLORS from '../../constants/Colors'
 import React from 'react'
 
 const DeleteModal = ({deleteItem, itemSelected, modalVisible, onHandlerModal}) => {
@@ -9,12 +10,12 @@ const DeleteModal = ({deleteItem, itemSelected, modalVisible, onHandlerModal}) =
 				<View style={styles.modalContainer2}>
 					<Text style={styles.modalText}>¿Deseas cancelar esta clase?</Text>
 
-					<Pressable style={styles.confirmPressable}
+					<Pressable style={styles.cancelPressable}
 						onPress={() => {
 							deleteItem(itemSelected.id);
 						}}
 					>
-						<Text style={styles.modalConfirmPressableText} >Confirmar</Text>
+						<Text style={styles.modalCancelPressableText} >Cancelar</Text>
 					</Pressable>
 
 					<Pressable style={styles.returnPressable}
@@ -47,36 +48,36 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		borderWidth: 3,
 		borderStyle: 'solid',
-		borderColor: '#008245',
-		backgroundColor: '#E9FFDF',
+		borderColor: COLORS.darkGreen,
+		backgroundColor: COLORS.lightGreen,
 	},
 
 	modalText: {
-		fontWeight: 'bold',
 		fontSize: 18,
-		marginVertical: 10
+		marginVertical: 10,
+		fontFamily: 'comfortaa-semibold'
 	},
 
-	confirmPressable: {
+	cancelPressable: {
 		height: 55,
 		width: 120,
-		backgroundColor: '#F49E9E',
+		backgroundColor: COLORS.lightRed,
 		justifyContent: 'center',
 		alignItems: 'center',
 		marginVertical: 10,
 		borderRadius: 10,
 	},
 
-	modalConfirmPressableText: {
+	modalCancelPressableText: {
 		color: 'white',
 		fontSize: 20,
-		fontWeight: 'bold',
+		fontFamily: 'comfortaa-bold'
 	},
 
 	returnPressable: {
 		height: 55,
 		width: 120,
-		backgroundColor: '#DADADA',
+		backgroundColor: COLORS.lightGray,
 		justifyContent: 'center',
 		alignItems: 'center',
 		marginVertical: 10,
@@ -86,6 +87,6 @@ const styles = StyleSheet.create({
 	modalReturnPressableText: {
 		color: 'white',
 		fontSize: 20,
-		fontWeight: 'bold',
+		fontFamily: 'comfortaa-bold'
 	}
 })

@@ -1,5 +1,6 @@
 import { Button, StyleSheet, TextInput, View } from 'react-native'
-import React, { useEffect } from 'react'
+
+import React from 'react'
 
 const ClassInput = ({
 	onChangeTextHandler,
@@ -31,13 +32,14 @@ export default ClassInput
 
 const styles = StyleSheet.create({
 	inputContainer: {
-		marginVertical: 40,
+		padding: 10,
+		alignItems: 'center',
 	},
 
 	input: {
-		marginVertical: 30,
+		marginBottom: 20,
 		padding: 15,
 		width: 300,
-		backgroundColor: "gray",
+		backgroundColor: "lightgray",
 	}
 });

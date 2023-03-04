@@ -1,35 +1,33 @@
 import { Keyboard, SafeAreaView, StyleSheet, TouchableWithoutFeedback, View } from 'react-native'
-import React, { useState } from 'react'
 
+import AvailableClassContextProvider from './components/Context/AvailableClassContext';
+import ClassContextProvider from './components/Context/ClassContext';
 import ClassSelection from './screens/ClassSelection';
 import Dashboard from './screens/Dashboard';
+import React from 'react'
+import { ScreenSwitchContext } from './components/Context/ScreenSwitchContext';
 
 const Index = () => {
-	
-	const [screen, setScreen] = useState(1)
-	
-	const switchScreen =()=>{
-		screen === 1 && setScreen(2)
-		screen === 2 && setScreen(1)
-	}
 
+  const {screen} = React.useContext(ScreenSwitchContext)
+  
 	return (
-		<SafeAreaView style={styles.safeAreaView}>
-			<TouchableWithoutFeedback
-				onPress={() => {
-					Keyboard.dismiss();
-				}}
-			>
-				<View style={styles.screen}>
-					{
-						screen === 1 
-							? <Dashboard switchScreen={switchScreen}/> 
-							: <ClassSelection switchScreen={switchScreen}/>
-					}
-				</View>
-			</TouchableWithoutFeedback>
-		</SafeAreaView>
-	);
+    <SafeAreaView style={styles.safeAreaView}>
+      <TouchableWithoutFeedback
+        onPress={() => {
+          Keyboard.dismiss();
+        }}
+      >
+        <View style={styles.screen}>
+          <ClassContextProvider>
+            <AvailableClassContextProvider>
+              {screen === 1 ? <Dashboard /> : <ClassSelection />}
+            </AvailableClassContextProvider>
+          </ClassContextProvider>
+        </View>
+      </TouchableWithoutFeedback>
+    </SafeAreaView>
+  );
 }
 
 export default Index

@@ -2,6 +2,7 @@ import * as SplashScreen from 'expo-splash-screen';
 
 import Index from './src/Index';
 import React from 'react'
+import ScreenSwitchContextProvider from './src/components/Context/ScreenSwitchContext';
 import { useFonts } from 'expo-font';
 
 SplashScreen.preventAutoHideAsync();
@@ -27,6 +28,8 @@ export default function App() {
   SplashScreen.hideAsync()
   
   return (
-    <Index onLayout={onLayoutRootView}/>
+    <ScreenSwitchContextProvider>
+      <Index onLayout={onLayoutRootView} />
+    </ScreenSwitchContextProvider>
   );
 }

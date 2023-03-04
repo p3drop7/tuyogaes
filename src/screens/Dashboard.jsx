@@ -1,19 +1,15 @@
-import { Button, StyleSheet, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 
 import ClassList from "../components/ClassList/ClassList";
 import ProfileDisplay from "../components/ProfileDisplay/ProfileDisplay";
 import React from "react";
 
-const Dashboard = ({switchScreen}) => {
+const Dashboard = () => {
 	
 	return (
 		
 		<View style={styles.dashboard}>
 			<ProfileDisplay />
-			<Button title='+' onPress={()=>{
-				switchScreen()
-			}}
-			/>
 			<ClassList />
 		</View>
 	);

@@ -1,56 +1,52 @@
 import {
+	Button,
 	FlatList,
 	StyleSheet,
 	Text,
-	View,
+	View
 } from "react-native";
-import React, { useState } from "react";
-import ClassInput from "./ClassInput";
+import React, { useContext, useState } from "react";
+
+import { ClassContext } from "../Context/ClassContext";
 import ClassItem from "./ClassItem";
 import DeleteModal from "./DeleteModal";
+import { ScreenSwitchContext } from "../Context/ScreenSwitchContext";
 
 const ClassList = () => {
-    
-	const [classList, setClassList] = useState([]);
-	const [className, setClassName] = useState("");
+	
+	const {myClassList, addClass, deleteClass} = useContext(ClassContext)
+	const {switchScreen} = useContext(ScreenSwitchContext)
 
 	const [itemSelected, setItemSelected] = useState({});
 	const [modalVisible, setModalVisible] = useState(false);
 
-	const onChangeTextHandler = (text) => {
-		setClassName(text);
-	};
-
-	const onPressInputHandler = () => {
-		let newClass = { title: className, id: Date.now() };
-		setClassList([...classList, newClass]);
-		setClassName("");
-	};
-
-	const onHandlerModal = (id) => {
-		let currentItem = classList.filter((item) => item.id === id)[0];
+	const onHandlerModal = (key) => {
+		let currentItem = myClassList.filter((item) => item.key === key)[0];
 		setItemSelected(currentItem);
 		setModalVisible(!modalVisible);
 	};
 
-	const deleteItem = (id) => {
-		let newClassList = classList.filter((item) => item.id !== id);
-		setClassList(newClassList);
+	const deleteItem = () => {
+		deleteClass(itemSelected)
 		setModalVisible(!modalVisible);
 	};
     
 	return (
 		<View>
+			<Button title='+' onPress={()=>{
+				switchScreen()
+			}}
+			/>
 			<Text style={styles.title}>Mis próximas clases</Text>
 
 			<View style={styles.container}>
-				{classList.length === 0 ? (
+				{myClassList.length === 0 ? (
 					<Text style={styles.emptyList}>No has agregado clases</Text>
 				) : (
 					<FlatList
 						contentContainerStyle={styles.listContainer}
-						data={classList}
-						keyExtractor={(item) => item.id}
+						data={myClassList}
+						keyExtractor={(item) => item.key}
 						renderItem={(itemData) => {
 							return (
 								<ClassItem
@@ -64,16 +60,10 @@ const ClassList = () => {
 			</View>
 
 			<DeleteModal
-				deleteItem={deleteItem}
 				itemSelected={itemSelected}
 				modalVisible={modalVisible}
 				onHandlerModal={onHandlerModal}
-			/>
-
-			<ClassInput
-				onChangeTextHandler={onChangeTextHandler}
-				onPressInputHandler={onPressInputHandler}
-				className={className}
+				deleteItem={deleteItem}
 			/>
 		</View>
 	);

@@ -1,16 +1,16 @@
 import { Calendar, LocaleConfig } from 'react-native-calendars'
-import { StyleSheet, Text, View } from 'react-native'
 
 import COLORS from '../../constants/Colors';
 import React from 'react'
+import { StyleSheet } from 'react-native'
 
 const ClassCalendar = ({availableClasses, selectDay}) => {
-
+  
   let calendarClasses = {}
   availableClasses.map(item => {
-    calendarClasses[item] = { selected: true, selectedColor: COLORS.darkGreen }
+    calendarClasses[item.dateString] = { selected: true, selectedColor: COLORS.darkGreen }
   })
-
+  
   LocaleConfig.locales['es'] = {
     monthNames: [
       'Enero',
@@ -35,9 +35,6 @@ const ClassCalendar = ({availableClasses, selectDay}) => {
   LocaleConfig.defaultLocale = 'es';
 
   return (
-    <View>
-      <Text>Class Calendar</Text>
-
       <Calendar
         onDayPress={(day) => {
           selectDay(day)
@@ -62,7 +59,6 @@ const ClassCalendar = ({availableClasses, selectDay}) => {
           },
         }}
       />
-    </View>
   );
 }
 
